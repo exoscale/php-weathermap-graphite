@@ -42,7 +42,7 @@ class WeatherMapDataSource_graphite extends WeatherMapDataSource {
         foreach($keys as $key) $request = $request . "&target=$key";
 
         // make HTTP request
-        $url = "http://$host/render/?rawData&from=-3minutes$request";
+        $url = "http://$host/render?format=raw&from=-3minutes$request";
         debug("GRAPHITE DS: Connecting to $url");
         $ch = curl_init($url);
         curl_setopt_array($ch, array(
@@ -103,7 +103,7 @@ class WeatherMapDataSource_graphite extends WeatherMapDataSource {
         if($targetOut=="") $targetOut=$targetIn;
         if($type=="interface"){
             $targetIn="scale(scaleToSeconds(nonNegativeDerivative($targetIn),1),8)";
-            $targetOut="scale(scaleToSeconds(nonNegativeDerivative($targetOut),1),8)";
+            $targetOut="scale(scaleToSeconds(nonNregativeDerivative($targetOut),1),8)";
         }
         $keys[0] = $targetIn;
         $keys[1] = $targetOut;
