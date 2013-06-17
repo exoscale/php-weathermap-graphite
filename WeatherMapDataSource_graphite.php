@@ -20,7 +20,7 @@ class WeatherMapDataSource_graphite extends WeatherMapDataSource {
     function Init(&$map)
     {
         if(function_exists('curl_init')) { return(TRUE); }
-        debug("GRAPHITE DS: curl_init() not found. Do you have the PHP CURL module?\n");
+        print("GRAPHITE DS: curl_init() not found. Do you have the PHP CURL module?\n");
 
         return(FALSE);
     }
@@ -43,7 +43,7 @@ class WeatherMapDataSource_graphite extends WeatherMapDataSource {
 
         // make HTTP request
         $url = "http://$host/render?format=raw&from=-3minutes$request";
-        debug("GRAPHITE DS: Connecting to $url");
+        print("GRAPHITE DS: Connecting to $url");
         $ch = curl_init($url);
         curl_setopt_array($ch, array(
                     CURLOPT_RETURNTRANSFER => true,
@@ -52,7 +52,7 @@ class WeatherMapDataSource_graphite extends WeatherMapDataSource {
         $data = curl_exec($ch);
         $status = curl_getinfo($ch, CURLINFO_HTTP_CODE);
         if ($status != 200) {
-            debug("GRAPHITE DS: Got HTTP code $status from Graphite");
+            print("GRAPHITE DS: Got HTTP code $status from Graphite");
             return;
         }
         return $data;
@@ -76,7 +76,7 @@ class WeatherMapDataSource_graphite extends WeatherMapDataSource {
 
             if ($value === 'None') {
                 // no value found
-                debug("GRAPHITE DS: No valid data points found");
+                print("GRAPHITE DS: No valid data points found");
                 return;
             }
            array_push($valuesLines,$value);
@@ -93,7 +93,7 @@ class WeatherMapDataSource_graphite extends WeatherMapDataSource {
         }
         else
         {
-            debug("GRAPHITE DS: TARGET doesn't start by graphite:");
+            print("GRAPHITE DS: TARGET doesn't start by graphite:");
             return;
         }
         $keys=array();
