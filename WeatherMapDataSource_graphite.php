@@ -42,7 +42,7 @@ class WeatherMapDataSource_graphite extends WeatherMapDataSource {
         foreach($keys as $key) $request = $request . "&target=$key";
 
         // make HTTP request
-        $url = "http://$host/render?format=raw&from=-3minutes$request";
+        $url = "http://$host/render?format=raw&from=-6minutes$request";
         print("GRAPHITE DS: Connecting to $url");
         $ch = curl_init($url);
         curl_setopt_array($ch, array(
