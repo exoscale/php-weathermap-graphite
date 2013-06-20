@@ -14,6 +14,8 @@ TARGET graphite:(graphite_server)|in|(out)|(type)
   
     e.g. graphite:graphite.example.net:82|network.net1.router1_example_net.int.xe_0_0_2.outbytes|network.net1.router1_example_net.int.xe_0_0_2.inbytes|interface
 
+    e.g. graphite:graphite.example.net:82|network.net1.router1_example_net.int.xe_0_0_2.rx|network.net1.router1_example_net.int.xe_0_0_2.tx|
+
 - host - graphite server to use, if empty it will use the value define below to keep the weathermap conf clean
 - in   - string of the ressource to graph
 - out  - (optionnal) string of the ressource to graph for the other direction
