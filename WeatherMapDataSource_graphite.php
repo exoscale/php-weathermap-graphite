@@ -43,7 +43,7 @@ class WeatherMapDataSource_graphite extends WeatherMapDataSource {
 
         // make HTTP request
         $url = "http://$host/render?format=raw&from=-6minutes$request";
-        print("GRAPHITE DS: Connecting to $url");
+        //print("GRAPHITE DS: Connecting to $url");
         $ch = curl_init($url);
         curl_setopt_array($ch, array(
                     CURLOPT_RETURNTRANSFER => true,
@@ -52,7 +52,7 @@ class WeatherMapDataSource_graphite extends WeatherMapDataSource {
         $data = curl_exec($ch);
         $status = curl_getinfo($ch, CURLINFO_HTTP_CODE);
         if ($status != 200) {
-            print("GRAPHITE DS: Got HTTP code $status from Graphite");
+            print("GRAPHITE DS: Got HTTP code $status from Graphite for $url");
             return;
         }
         return $data;
