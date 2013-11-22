@@ -97,7 +97,7 @@ class WeatherMapDataSource_graphite extends WeatherMapDataSource {
             return;
         }
         $keys=array();
-        list($host,$targetIn,$targetOut,$type) = explode('|', $targetstring);
+        list($host,$targetIn,$targetOut,$type) = array_pad(explode('|', $targetstring), 4, "");
             if($host == "") $host="myhost:82";
 
         if($targetOut=="") $targetOut=$targetIn;
